@@ -1,0 +1,14 @@
+version: "3"
+
+services:
+  db:
+    build: cassandra
+    ports:
+      - "9042:9042"
+      - "7000:7000"
+
+  application:
+    build: application
+    depends_on:
+      - db
+    restart: on-failure:10
